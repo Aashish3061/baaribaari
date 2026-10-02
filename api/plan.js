@@ -7,7 +7,7 @@ const crypto = require("crypto");
 
 const MODEL = "gemini-2.5-flash-lite";
 const MAX_OUTPUT_TOKENS = 350;
-const CAP_PER_DAY = 3;
+const CAP_PER_DAY = 5;
 
 const LOCATIONS = ["Same city as parent", "Another city in India", "Abroad"];
 const TIME = ["Under 2 hrs a week", "2-5 hrs a week", "5+ hrs a week"];
