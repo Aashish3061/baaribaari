@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BaariBaari · Care, turn by turn, together</title>
+<meta name="description" content="Sharing a parent's care across cities shouldn't start with an argument. BaariBaari drafts a gentle starting proposal and a ready-to-send WhatsApp message for siblings.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='24' cy='32' r='18' fill='%230F5C5C'/%3E%3Ccircle cx='40' cy='32' r='18' fill='%23E59A1D' fill-opacity='.85'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Hind:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FBF6EE;--paper:#FFFDF9;--ink:#1F2A2E;--muted:#5B6668;--line:#E8DFD0;--teal:#0F5C5C;--teal-2:#E3EFEC;--gold:#E59A1D;--gold-2:#FCEFD6;--terra:#B8502A;--wa:#DCF8C6;color-scheme:light}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 Hind,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:700;line-height:1.15;margin:0 0 .5em;letter-spacing:-.01em}
+h1{font-size:clamp(2.3rem,5.5vw,3.9rem)}h2{font-size:clamp(1.7rem,3.6vw,2.5rem)}h3{font-size:1.2rem}
+p{margin:0 0 1em}a{color:var(--teal)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+section{padding:84px 0}
+.eyebrow{font-weight:600;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;color:var(--terra);margin-bottom:.8em}
+.btn{display:inline-flex;align-items:center;gap:.5em;background:var(--teal);color:#fff;border:0;border-radius:999px;padding:.85em 1.5em;font:600 1rem Hind,sans-serif;text-decoration:none;cursor:pointer;transition:transform .15s,background .15s}
+.btn:hover{background:#0b4848;transform:translateY(-1px)}.btn:disabled{opacity:.6;cursor:wait;transform:none}
+.btn.ghost{background:transparent;color:var(--teal);border:1.5px solid var(--teal)}
+nav{position:sticky;top:0;z-index:10;background:rgba(251,246,238,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{display:flex;align-items:center;gap:.5em;font:700 1.3rem Fraunces,serif;color:var(--ink);text-decoration:none}
+.logo svg{width:30px;height:30px}
+nav ul{display:flex;gap:1.6em;list-style:none;margin:0;padding:0}nav ul a{color:var(--ink);text-decoration:none;font-weight:500}
+@media(max-width:720px){nav ul{display:none}}
+/* hero */
+.hero{padding:72px 0 64px}
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
+.hero p.lede{font-size:1.18rem;color:var(--muted);max-width:34em}
+.hero .ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:1.6em}
+.phone{background:#E9E2D6;border-radius:28px;padding:16px;box-shadow:0 30px 60px -30px rgba(31,42,46,.45);max-width:380px;margin-left:auto}
+.phone .bar{display:flex;align-items:center;gap:10px;padding:6px 6px 12px;font-weight:600}
+.phone .bar span{width:34px;height:34px;border-radius:50%;background:var(--teal);display:inline-block}
+.phone small{display:block;font-weight:400;color:var(--muted);font-size:.78rem;line-height:1.2}
+.bubble{background:var(--wa);border-radius:14px 14px 4px 14px;padding:12px 14px;font-size:.93rem;line-height:1.45;margin:8px 0 8px 24px;box-shadow:0 1px 1px rgba(0,0,0,.06)}
+.bubble.in{background:#fff;border-radius:14px 14px 14px 4px;margin:8px 24px 8px 0}
+.tag{display:inline-block;font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;background:var(--gold-2);color:#8a5a0b;border-radius:6px;padding:2px 8px;margin-bottom:6px}
+@media(max-width:880px){.hero .wrap{grid-template-columns:1fr}.phone{margin:0 auto}}
+/* live strip */
+.strip{background:var(--teal);color:#fff;padding:22px 0}
+.strip .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.stat b{display:block;font:700 1.9rem Fraunces,serif}.stat span{opacity:.85;font-size:.95rem}
+@media(max-width:720px){.strip .wrap{grid-template-columns:1fr}}
+/* problem */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+@media(max-width:880px){.two{grid-template-columns:1fr;gap:28px}}
+.facts{display:grid;gap:16px}
+.fact{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:22px 24px}
+.fact b{font:700 2.2rem Fraunces,serif;color:var(--terra);display:block;line-height:1.1}
+.fact cite{font-style:normal;font-size:.82rem;color:var(--muted)}
+.big{font:500 1.45rem/1.4 Fraunces,serif}
+/* compare */
+.table{width:100%;border-collapse:separate;border-spacing:0;background:var(--paper);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.table th,.table td{text-align:left;padding:14px 18px;border-bottom:1px solid var(--line);vertical-align:top}
+.table tr:last-child td{border-bottom:0}.table th{background:#F4EDE1;font-size:.85rem;letter-spacing:.04em;text-transform:uppercase}
+.table tr.us td{background:var(--teal-2);font-weight:600}
+@media(max-width:640px){.table th:nth-child(2),.table td:nth-child(2){display:none}}
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;counter-reset:s}
+.step{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:26px}
+.step:before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--gold);color:#fff;font:700 1.1rem Fraunces,serif;margin-bottom:14px}
+@media(max-width:820px){.steps{grid-template-columns:1fr}}
+/* demo */
+#try{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.demo{display:grid;grid-template-columns:1.05fr .95fr;gap:36px;align-items:start}
+@media(max-width:940px){.demo{grid-template-columns:1fr}}
+fieldset{border:0;padding:0;margin:0 0 22px}legend{font-weight:600;margin-bottom:10px}
+.seg{display:inline-flex;border:1.5px solid var(--line);border-radius:999px;padding:3px;background:var(--bg)}
+.seg button{border:0;background:transparent;padding:.45em 1.1em;border-radius:999px;font:600 .95rem Hind,sans-serif;cursor:pointer;color:var(--muted)}
+.seg button[aria-pressed=true]{background:var(--teal);color:#fff}
+.sibs{display:grid;gap:12px}
+.sib{border:1px solid var(--line);border-radius:14px;padding:14px;background:var(--bg)}
+.sib h4{margin:0 0 8px;font:600 .95rem Hind,sans-serif;color:var(--teal)}
+.sib .grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media(max-width:520px){.sib .grid{grid-template-columns:1fr}}
+label.f{display:block;font-size:.8rem;color:var(--muted)}
+select,textarea{width:100%;font:inherit;font-size:.95rem;padding:.5em .6em;border:1px solid #D6CBB8;border-radius:10px;background:#fff;color:var(--ink)}
+textarea{min-height:64px;resize:vertical}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips label{display:inline-flex;align-items:center;gap:6px;border:1.5px solid var(--line);border-radius:999px;padding:.35em .9em;cursor:pointer;background:#fff;font-size:.93rem;user-select:none}
+.chips input{accent-color:var(--teal)}
+.chips label:has(input:checked){border-color:var(--teal);background:var(--teal-2)}
+.hint{font-size:.82rem;color:var(--muted)}
+.result{background:var(--bg);border:1px dashed #D6CBB8;border-radius:18px;padding:22px;min-height:320px;position:sticky;top:84px}
+.result .empty{color:var(--muted);text-align:center;padding:60px 10px}
+.role{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
+.role:last-child{border-bottom:0}
+.role .who{flex:0 0 auto;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font:700 1rem Fraunces,serif;color:#fff}
+.shares{display:flex;height:14px;border-radius:7px;overflow:hidden;margin:6px 0 4px}
+.err{background:#FBE7DF;border:1px solid #EFC2B0;color:#7a2e12;border-radius:12px;padding:14px 16px}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+/* principles */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{border-top:3px solid var(--gold);padding-top:16px}
+@media(max-width:820px){.cards{grid-template-columns:1fr}}
+.post{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:28px;max-width:640px;white-space:pre-line;font-size:1rem}
+.post .who{display:flex;gap:10px;align-items:center;margin-bottom:14px;white-space:normal}
+.post .av{width:44px;height:44px;border-radius:50%;background:var(--teal)}
+details{border-bottom:1px solid var(--line);padding:16px 0}summary{cursor:pointer;font-weight:600;font-size:1.05rem}
+details p{margin:.6em 0 0;color:var(--muted)}
+footer{padding:48px 0;font-size:.9rem;color:var(--muted);border-top:1px solid var(--line)}
+footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.spin{width:18px;height:18px;border:2px solid rgba(255,255,255,.5);border-top-color:#fff;border-radius:50%;animation:sp 0.8s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+  <a class="logo" href="#top"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="24" cy="32" r="18" fill="#0F5C5C"/><circle cx="40" cy="32" r="18" fill="#E59A1D" fill-opacity=".85"/></svg>BaariBaari</a>
+  <ul><li><a href="#why">Why</a></li><li><a href="#how">How it works</a></li><li><a href="#principles">Principles</a></li></ul>
+  <a class="btn" href="#try">Try the demo</a>
+</div></nav>
+
+<header class="hero" id="top"><div class="wrap">
+  <div>
+    <div class="eyebrow">For siblings sharing a parent's care</div>
+    <h1>Care, turn by turn, together.</h1>
+    <p class="lede">Sharing a parent's care across cities shouldn't start with an argument. Tell us how many siblings you are, where each lives, how much time and money each can offer, and what your parent needs. In seconds, BaariBaari drafts a gentle starting proposal and a ready-to-send message, crediting calls, bookings and paperwork too. Edit it, share it, begin the conversation today.</p>
+    <div class="ctas"><a class="btn" href="#try">Draft our plan, free →</a><a class="btn ghost" href="#how">See how it works</a></div>
+  </div>
+  <div class="phone" aria-label="Example of a drafted WhatsApp message">
+    <div class="bar"><span></span><div>Family 🏠<small>Sibling A, Sibling B, Sibling C</small></div></div>
+    <div class="bubble in">Who's taking care of Ma's bills this month?</div>
+    <div class="bubble"><div class="tag">Example draft</div><br>Here's a draft to start from. Change anything!<br><br>A (Pune, same city): Sunday visit + going along to appointments<br>B (Bengaluru): bookings, bills &amp; pension paperwork<br>C (Dubai): weekly video call + groceries online<br>Costs: A 25% · B 25% · C 50%<br><br>Ma, what would you prefer?</div>
+    <div class="bubble in">This works. Can I swap the call to Saturdays?</div>
+  </div>
+</div></header>
+
+<div class="strip" aria-live="polite"><div class="wrap">
+  <div class="stat"><b id="s-plans">—</b><span>care plans drafted with BaariBaari</span></div>
+  <div class="stat"><b id="s-remote">—</b><span>of the care tasks families listed can be owned from another city</span></div>
+  <div class="stat"><b id="s-top">—</b><span>most-listed need so far</span></div>
+</div></div>
+
+<section id="why"><div class="wrap two">
+  <div>
+    <div class="eyebrow">The problem</div>
+    <h2>Your parent lives in another city. So who handles the calls, the bookings and the paperwork?</h2>
+    <p class="big">In many families, nobody decides. It just lands on one sibling, and raising it feels like starting an argument.</p>
+    <p>Distance changes what caring looks like, but remote work still counts. Booking the specialist from Bengaluru, sorting the pension forms on a Sunday night, the weekly video call: it's all care, even if no one sees it.</p>
+  </div>
+  <div class="facts">
+    <div class="fact"><b>36–43%</b>of older adults in India do not live with any of their children.<br><cite>Longitudinal Ageing Study in India (LASI) 2017–18, as reported in IJERPH 2025, 22(11):1745</cite></div>
+    <div class="fact"><b>10.5% → 20.8%</b>India's population aged 60+, 2022 to 2050 (projected). The 60+ population grew 103% between 2000 and 2022.<br><cite>UNFPA India Ageing Report 2023</cite></div>
+    <div class="fact"><b>~1 in 5</b>older persons in India live alone or only with a spouse.<br><cite>UNFPA India Ageing Report 2023</cite></div>
+  </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <div class="eyebrow">What families use today</div>
+  <h2 style="max-width:20em">Lots of ways to talk about care. None that helps you agree on who owns what.</h2>
+  <table class="table">
+    <thead><tr><th>Today's fix</th><th>What it's good at</th><th>What it leaves open</th></tr></thead>
+    <tbody>
+      <tr><td>Family WhatsApp group</td><td>Fast updates, everyone's already there</td><td>Messages pile up; nothing gets assigned</td></tr>
+      <tr><td>Spreadsheets &amp; shared calendars</td><td>Tracking once a plan exists</td><td>Someone still has to propose the split</td></tr>
+      <tr><td>Paid elder-care services</td><td>Staff for visits, emergencies, nursing</td><td>Who in the family books and pays is still yours to decide</td></tr>
+      <tr class="us"><td>BaariBaari</td><td>A neutral first draft of who owns what</td><td>You edit it, your family agrees it</td></tr>
+    </tbody>
+  </table>
+</div></section>
+
+<section id="how" style="padding-top:0"><div class="wrap">
+  <div class="eyebrow">How it works</div>
+  <h2>Three minutes from silence to a starting point.</h2>
+  <div class="steps">
+    <div class="step"><h3>Describe your family</h3><p>How many siblings, where each lives, the time and money each can offer, and how each likes to help. No names needed.</p></div>
+    <div class="step"><h3>Tick what your parent needs</h3><p>Visits, calls, bookings, bills and paperwork, groceries, repairs. Never medicines or health decisions.</p></div>
+    <div class="step"><h3>Get a draft, then talk</h3><p>Who owns what, a cost split worked out in code, and a WhatsApp message in English, Hinglish or Hindi. Edit it and send it.</p></div>
+  </div>
+</div></section>
+
+<section id="try"><div class="wrap">
+  <div class="eyebrow">Try it now</div>
+  <h2>Draft your family's starting plan</h2>
+  <p class="hint" style="margin-bottom:28px">Free demo · up to 3 plans a day · we store your choices but never names or the free-text note</p>
+  <div class="demo">
+    <form id="f" novalidate>
+      <fieldset><legend>How many siblings share the care?</legend>
+        <div class="seg" role="group" aria-label="Number of siblings"><button type="button" data-n="2" aria-pressed="false">2</button><button type="button" data-n="3" aria-pressed="true">3</button><button type="button" data-n="4" aria-pressed="false">4</button></div>
+      </fieldset>
+      <fieldset><legend>About each sibling</legend><div class="sibs" id="sibs"></div></fieldset>
+      <fieldset><legend>What does your parent need help with?</legend><div class="chips" id="needs"></div></fieldset>
+      <fieldset><legend>Message language</legend>
+        <div class="seg" role="group" aria-label="Language" id="lang"><button type="button" aria-pressed="true">English</button><button type="button" aria-pressed="false">Hinglish</button><button type="button" aria-pressed="false">Hindi</button></div>
+      </fieldset>
+      <fieldset><legend>Anything else to consider? <span class="hint">(optional, not stored)</span></legend>
+        <textarea id="note" maxlength="200" placeholder="e.g. Sibling B travels for work in March; our parent prefers morning calls"></textarea>
+        <div class="hint"><span id="cc">0</span>/200 · please don't enter names or health details</div>
+      </fieldset>
+      <button class="btn" id="go" type="submit">Draft our plan</button>
+    </form>
+    <div class="result" id="out" aria-live="polite"><div class="empty">Your draft appears here: who owns what, a cost split, and a message ready for the family group.</div></div>
+  </div>
+</div></section>
+
+<section id="principles"><div class="wrap">
+  <div class="eyebrow">Principles</div>
+  <h2>A starting proposal, never a verdict.</h2>
+  <div class="cards">
+    <div class="card"><h3>No scorecards</h3><p>We don't rate siblings or call anyone unfair. Remote work is credited alongside who lives nearby.</p></div>
+    <div class="card"><h3>No medical advice</h3><p>BaariBaari plans who does what. Medicines, symptoms and doses belong with your parent's doctor. In an emergency in India, call 112.</p></div>
+    <div class="card"><h3>No names stored</h3><p>Siblings are A, B, C, D. Your free-text note is used once and never saved. Arithmetic like cost shares is done in code, not by the AI.</p></div>
+  </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <div class="eyebrow">From our launch post</div>
+  <div class="post"><div class="who"><div class="av"></div><div><b>BaariBaari</b><br><span class="hint">Launching on LinkedIn</span></div></div>Your parent lives in another city. So who handles the calls, the bookings and the paperwork?
+
+In many families, nobody decides. It just lands on one sibling, and raising it feels like starting an argument.
+
+Living apart is common: 36-43% of older adults in India do not live with any of their children (LASI 2017-18).
+
+Distance changes what caring looks like, but remote work still counts.
+
+So we built BaariBaari ("turn by turn"), a free early web demo. It drafts a gentle starting proposal for sharing the care, plus a ready-to-send WhatsApp message.
+
+Which work goes least noticed in your family: the calls, the bookings or the paperwork?</div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap" style="max-width:780px">
+  <div class="eyebrow">Questions</div>
+  <h2>Good to know</h2>
+  <details><summary>Is this a full app?</summary><p>Not yet. This is an early, free web demo of the core idea: getting from "who does what?" to a draft everyone can react to.</p></details>
+  <details><summary>What do you store?</summary><p>The options you pick (cities as categories, time and money bands, needs, language), the AI's reply and token counts, so we can show the live numbers above. We never store names, and we never store your free-text note.</p></details>
+  <details><summary>How is the cost split worked out?</summary><p>In code, from the money band each sibling chose (none, some, a larger share), rounded so it always adds up to 100%. The AI only writes the words around it.</p></details>
+  <details><summary>Can it help with medicines or symptoms?</summary><p>No, by design. For health questions, please speak to your parent's doctor. For non-emergency support for older persons, India's national Elderline is 14567; for emergencies, call 112.</p></details>
+</div></section>
+
+<footer><div class="wrap">
+  <div><b style="color:var(--ink)">BaariBaari</b> · Care, turn by turn, together.<br>A product concept by Aashish Raj, Indian School of Business · GenAI individual assignment, 2026.</div>
+  <div>Sources: UNFPA India Ageing Report 2023; LASI 2017–18.<br>Not a medical service. Emergency in India: 112.</div>
+</div></footer>
+
+<script>
+const LOC=["Same city as parent","Another city in India","Abroad"],TIME=["Under 2 hrs a week","2-5 hrs a week","5+ hrs a week"],
+MONEY=["Can't contribute now","Some","A larger share"],PREF=["Being there in person","Calls and company","Bookings and admin","Money and purchases"],
+NEEDS=["Weekly video call","Book doctor appointments","Bills, pension and paperwork","Order groceries and essentials","Arrange home repairs","Monthly family review call","In-person visit or check-in","Accompany to appointments","Help around the house"],
+DEF=[["Same city as parent","2-5 hrs a week","Some","Being there in person"],["Another city in India","Under 2 hrs a week","A larger share","Bookings and admin"],["Abroad","Under 2 hrs a week","A larger share","Calls and company"],["Another city in India","2-5 hrs a week","Some","Money and purchases"]],
+COLORS=["#0F5C5C","#E59A1D","#B8502A","#5B6CA8"],L="ABCD";
+const $=s=>document.querySelector(s),esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+let n=3;
+const sel=(name,opts,v)=>`<label class="f">${name}<select>${opts.map(o=>`<option${o===v?" selected":""}>${esc(o)}</option>`).join("")}</select></label>`;
+function renderSibs(){const keep=[...document.querySelectorAll(".sib")].map(el=>[...el.querySelectorAll("select")].map(s=>s.value));
+ $("#sibs").innerHTML=Array.from({length:n},(_,i)=>{const v=keep[i]||DEF[i];return `<div class="sib"><h4>Sibling ${L[i]}</h4><div class="grid">${sel("Lives",LOC,v[0])}${sel("Free time",TIME,v[1])}${sel("Can share costs",MONEY,v[2])}${sel("Likes to help by",PREF,v[3])}</div></div>`}).join("")}
+document.querySelectorAll("[data-n]").forEach(b=>b.onclick=()=>{n=+b.dataset.n;document.querySelectorAll("[data-n]").forEach(x=>x.setAttribute("aria-pressed",x===b));renderSibs()});
+$("#lang").querySelectorAll("button").forEach(b=>b.onclick=()=>$("#lang").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===b)));
+$("#needs").innerHTML=NEEDS.map((x,i)=>`<label><input type="checkbox" value="${esc(x)}"${[0,1,2,6].includes(i)?" checked":""}>${esc(x)}</label>`).join("");
+$("#note").oninput=e=>$("#cc").textContent=e.target.value.length;
+renderSibs();
+
+function showStats(s){if(!s)return;$("#s-plans").textContent=(s.plans||0).toLocaleString("en-IN");
+ $("#s-remote").textContent=s.remote_pct==null?"—":s.remote_pct+"%";$("#s-top").textContent=s.top_need||"—"}
+fetch("/api/plan").then(r=>r.ok?r.json():null).then(showStats).catch(()=>{});
+
+$("#f").onsubmit=async e=>{e.preventDefault();
+ const siblings=[...document.querySelectorAll(".sib")].map(el=>{const [location,time,money,prefers]=[...el.querySelectorAll("select")].map(s=>s.value);return{location,time,money,prefers}});
+ const needs=[...document.querySelectorAll("#needs input:checked")].map(i=>i.value);
+ const language=$("#lang [aria-pressed=true]").textContent,note=$("#note").value.trim();
+ const out=$("#out");
+ if(!needs.length){out.innerHTML=`<div class="err">Tick at least one thing your parent needs help with.</div>`;return}
+ const go=$("#go");go.disabled=true;go.innerHTML=`<span class="spin"></span> Drafting…`;
+ try{const r=await fetch("/api/plan",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({siblings,needs,language,note})});
+  const d=await r.json();showStats(d.stats);
+  if(d.status!=="ok"){out.innerHTML=`<div class="err">${esc(d.message||"Something went wrong.")}</div>`;return}
+  const sh=d.shares;
+  out.innerHTML=`<div class="tag">Starting proposal · edit freely</div><h3 style="margin-top:6px">Who owns what</h3>`+
+   d.roles.map(x=>{const k=Math.max(0,L.indexOf(String(x.sibling).replace(/[^A-D]/g,"").slice(0,1)));return `<div class="role"><div class="who" style="background:${COLORS[k]}">${esc(String(x.sibling).replace(/^Sibling\s*/i,"").slice(0,8))}</div><div>${esc(x.owns)}</div></div>`}).join("")+
+   (sh?`<h3 style="margin-top:18px">Cost split <span class="hint">(worked out in code)</span></h3><div class="shares">${sh.map((p,i)=>p?`<div style="width:${p}%;background:${COLORS[i]}"></div>`:"").join("")}</div><div class="hint">${sh.map((p,i)=>`${L[i]} ${p}%`).join(" · ")}</div>`:`<p class="hint" style="margin-top:14px">No one can share costs right now, so there's no split yet.</p>`)+
+   `<h3 style="margin-top:18px">Message for the family group</h3><div class="bubble" style="margin-left:0;white-space:pre-line" id="wa">${esc(d.whatsapp)}</div>
+   <div class="row"><button class="btn" type="button" id="cp">Copy message</button><a class="btn ghost" target="_blank" rel="noopener" href="https://wa.me/?text=${encodeURIComponent(d.whatsapp)}">Open in WhatsApp</a></div>`;
+  if(innerWidth<940)out.scrollIntoView({behavior:"smooth",block:"start"});
+  $("#cp").onclick=()=>navigator.clipboard.writeText(d.whatsapp).then(()=>$("#cp").textContent="Copied ✓");
+ }catch(err){out.innerHTML=`<div class="err">Couldn't reach the server. Please try again.</div>`}
+ finally{go.disabled=false;go.textContent="Draft our plan"}};
+</script>
+</body>
+</html>
