@@ -5,7 +5,7 @@
 
 const crypto = require("crypto");
 
-const MODEL = "gemini-2.5-flash-lite";
+const MODEL = "gemini-3.5-flash-lite";
 const MAX_OUTPUT_TOKENS = 350;
 const CAP_PER_DAY = 5;
 
