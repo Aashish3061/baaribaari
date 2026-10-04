@@ -150,7 +150,7 @@ function devanagariShare(s) {
   return dev + lat ? dev / (dev + lat) : 0;
 }
 
-function inPersonOk(roles, siblings) {
+const stripKnown = (s, needs) => needs.reduce((a, n) => a.split(n).join(" "), s).replace(/Sibling [A-D]/g, " "); function inPersonOk(roles, siblings) {
   return roles.every((r, i) => r.tasks.every((t) => NEEDS[t].remote || LOCAL.includes(siblings[i].location)));
 }
 
@@ -281,7 +281,7 @@ async function handler(req, res) {
     let g = await callGemini(content);
     let repaired = false;
     // Language check: Hindi must be mostly Devanagari; one repair attempt, then flag.
-    if (g.out && g.out.status === "ok" && body.language === "Hindi" && devanagariShare(g.out.whatsapp || "") < 0.6) {
+    if (g.out && g.out.status === "ok" && body.language === "Hindi" && devanagariShare(stripKnown(g.out.whatsapp || "", body.needs)) < 0.6) {
       const g2 = await callGemini(content, "REPAIR: your previous whatsapp text was mostly English. Rewrite it in natural Devanagari Hindi (keep only common English words like doctor, bill, video call).");
       if (g2.out && g2.out.status === "ok") { g = { ...g2, inTok: g.inTok + g2.inTok, outTok: g.outTok + g2.outTok, ms: g.ms + g2.ms }; repaired = true; }
     }
@@ -300,7 +300,7 @@ async function handler(req, res) {
       result = { ...result, roles, unassigned,
         checks: { coverage_pct: Math.round((100 * (body.needs.length - unassigned.length)) / body.needs.length), unassigned: unassigned.length,
           remote_tasks_pct: Math.round((100 * remoteCount(body.needs)) / body.needs.length), in_person_ok: inPersonOk(roles, body.siblings),
-          language_ok: body.language !== "Hindi" || devanagariShare(out.whatsapp || "") >= 0.6, language_repaired: repaired },
+          language_ok: body.language !== "Hindi" || devanagariShare(stripKnown(out.whatsapp || "", body.needs)) >= 0.6, language_repaired: repaired },
         load: careLoad(roles) };
     }
 
