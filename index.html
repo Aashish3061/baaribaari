@@ -322,13 +322,15 @@ const busy=(b,t)=>{b.disabled=!!t;if(t)b.innerHTML=`<span class="spin"></span> $
 
 function render(d,opts={}){const out=$("#out"),sh=d.shares,ld=d.load,ck=d.checks||{},sib=state.input.siblings;
  const lv=Object.fromEntries((ld?ld.rows:[]).map(r=>[r.sibling,r]));
- const moveSel=(t,cur)=>opts.readOnly?"":`<select aria-label="Move ${esc(t)}" data-task="${esc(t)}">${sib.map((_,i)=>`<option value="${L[i]}"${L[i]===cur?" selected":""}>${L[i]===cur?"Sibling "+L[i]:"Move to "+L[i]}</option>`).join("")}</select>`;
+ const moveSel=(t,cur)=>opts.readOnly?"":`<select aria-label="Move ${esc(t)}" data-task="${esc(t)}">${cur?"":`<option value="" selected>Choose sibling…</option>`}${sib.map((_,i)=>`<option value="${L[i]}"${L[i]===cur?" selected":""}>${L[i]===cur?"Sibling "+L[i]:(cur?"Move to ":"Give to ")+L[i]}</option>`).join("")}</select>`;
+ const un=d.unassigned||[];
  out.innerHTML=`<div class="tag">${opts.saved?"Saved plan · "+esc(opts.saved.status)+" · version "+opts.saved.versions:(d.mode==="update"?"Updated with your changes":"Suggested split · a starting point")}</div>
  <p style="margin:.4em 0 0">Here's a starting point based on what you told us. Your family can edit or confirm it.</p>
  <div class="kpis"><div class="kpi"><b>${ck.coverage_pct??100}%</b>tasks covered</div><div class="kpi"><b>${ck.remote_tasks_pct??"—"}%</b>remotely doable</div><div class="kpi"><b>${ck.unassigned??0}</b>unassigned</div></div>
  <div class="board">${d.roles.map((r,i)=>`<div class="scard"><div class="top"><div class="who" style="background:${COLORS[i]}">${r.sibling}</div><div class="meta"><b style="color:var(--ink)">Sibling ${r.sibling}</b><br>${esc(sib[i].location)} · ${esc(sib[i].availability)}</div>${lv[r.sibling]?`<span class="lvl ${lv[r.sibling].level}" title="${lv[r.sibling].points} load points · ~${lv[r.sibling].hoursPerMonth} h/month">${lv[r.sibling].level} load</span>`:""}</div>
   ${r.tasks.length?r.tasks.map(t=>`<div class="task"><span>${esc(t)}${INPERSON.has(t)?" 🚶":""}</span>${moveSel(t,r.sibling)}</div>`).join(""):`<div class="task"><span class="hint">No tasks this month</span></div>`}
-  ${r.why?`<div class="why"><b>Why:</b> ${esc(r.why)}</div>`:""}</div>`).join("")}</div>
+  ${r.why?`<div class="why"><b>Why:</b> ${esc(r.why)}</div>`:""}</div>`).join("")}
+  ${un.length?`<div class="scard" style="border-color:#E59A1D"><div class="top"><b>Unassigned · needs an owner</b></div>${un.map(t=>`<div class="task"><span>${esc(t)}${INPERSON.has(t)?" 🚶":""}</span>${moveSel(t,"")}</div>`).join("")}</div>`:""}</div>
  ${ld?`<p class="${ld.balanced?"note-ok":"note-warn"}" style="margin-top:10px">⚖️ ${esc(ld.note)} <span class="hint">(load = times/month × hours × effort; directional)</span></p>`:""}
  ${ck.in_person_ok===false?`<p class="note-warn">An in-person task is with a sibling who doesn't live nearby. Consider paid local help.</p>`:""}
  ${sh?`<h3 style="margin-top:14px">Cost split <span class="hint">(worked out in code)</span></h3><div class="shares">${sh.map((p,i)=>p?`<div style="width:${p}%;background:${COLORS[i]}"></div>`:"").join("")}</div><div class="hint">${sh.map((p,i)=>`${L[i]} ${p}%`).join(" · ")}</div>`:`<p class="hint">No one can share costs right now, so there's no split yet.</p>`}
@@ -341,9 +343,12 @@ function render(d,opts={}){const out=$("#out"),sh=d.shares,ld=d.load,ck=d.checks
  <div id="saveinfo" class="hint" style="margin-top:8px">${state.link?`Shareable plan: <a href="${state.link}">${state.link}</a>`:""}</div>`;
  out.querySelectorAll("select[data-task]").forEach(s=>s.onchange=()=>{$("#upd").disabled=false;$("#upd").textContent="Update plan with my changes"});
  $("#cp").onclick=()=>navigator.clipboard.writeText(d.whatsapp+(state.link?"\n"+state.link:"")).then(()=>$("#cp").textContent="Copied ✓");
+ if($("#upd")&&un.length)$("#upd").disabled=false;
  if($("#upd"))$("#upd").onclick=async()=>{const assignment={};out.querySelectorAll("select[data-task]").forEach(s=>assignment[s.dataset.task]=s.value);
+  if(Object.values(assignment).some(v=>!v))return fail({message:"Give every unassigned task to a sibling first."});
   busy($("#upd"),"Re-explaining…");try{const r=await api({...state.input,mode:"update",assignment});showStats(r.stats);if(r.status!=="ok")return fail(r);state.plan=r;render(r)}catch(e){fail()}};
  $("#save").onclick=async()=>{const p=state.plan,assignment={};p.roles.forEach(r=>r.tasks.forEach(t=>assignment[t]=r.sibling));
+  if((p.unassigned||[]).length)return fail({message:"Give every unassigned task to a sibling and press Update before saving."});
   busy($("#save"),"Saving…");try{const r=await api({mode:"save",code:state.code,status:opts.saved?"agreed":"proposed",siblings:state.input.siblings,needs:state.input.needs,language:state.input.language,assignment,whys:p.roles.map(x=>x.why),whatsapp:p.whatsapp});
    if(r.status!=="saved")return fail(r);state.code=r.code;state.link=location.origin+"/?plan="+r.code;history.replaceState(null,"","?plan="+r.code);
    render(p,{saved:{status:r.plan_status,versions:r.versions},readOnly:r.plan_status==="agreed"});fetch("/api/plan").then(x=>x.json()).then(showStats)}catch(e){fail()}};
